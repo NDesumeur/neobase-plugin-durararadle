@@ -1,0 +1,9 @@
+{
+  "pluginId": "neobase.durararadle",
+  "repo": "NDesumeur/neobase-plugin-durararadle",
+  "version": "1.0.0",
+  "sha256": "818ba4559b7183a1cfd91ad290ccd8249a9b129a610229a56ee87663b1a70f7a",
+  "approvedAt": "2026-10-31T16:39:32.099Z",
+  "neobase": ">=4.0.0",
+  "signature": "Gu/CJkQrVvd7BlZzLCwUNmJKOAol9wVjZ7+dboq/GIfTvAtW/3KvBU2q7seNc1qZFAdsQXiMBZkkVUr9lQgIDw=="
+}
