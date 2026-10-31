@@ -11,6 +11,9 @@ export default async function (ctx) {
   const $ = id => id === "dle_durararadle" ? view : (view.querySelector('#' + id) || document.getElementById(id));  // les identifiants de ta vue d'abord, puis ceux de la page (fenêtres, menus)
   const doc = async n => { try { return await folder.read(n); } catch { return null; } };
   const __icon = () => ctx.icon;  // l'icône de ce plugin
+  const __asset = async (rel, type) => URL.createObjectURL(new Blob([Uint8Array.from(atob(await neo.pluginFileRead(ctx.id, rel)), c => c.charCodeAt(0))], { type }));  // un fichier livré avec le plugin
+  const __imgs = {};  // les portraits livrés avec le plugin
+  await Promise.all(["akane-awakusu.webp","anri-sonohara.webp","aoba-kuronuma.webp","asanuma.webp","celty-sturluson.webp","chikage-rokujou.webp","denis.webp","dougen-awakusu.webp","drakon.webp","earthworm.webp","egor.webp","eijirou-sharaku.webp","emilia-kishitani.webp","erika-karisawa.webp","ginichirou-kuzuhara.webp","haruna-niekawa.webp","haruya-shiki.webp","hashim.webp","higa.webp","himeka-tatsugami.webp","hiroto-shijima.webp","horada.webp","izaya-orihara.webp","jinnai-yodogiri.webp","kanazawa.webp","kasane-kujiragi.webp","kasuka-heiwajima.webp","kaztano.webp","kine.webp","kinnosuke-kuzuhara.webp","kisuke-adabashi.webp","koji-yatabe.webp","kuon-kotonami.webp","kururi-orihara.webp","kyouhei-kadota.webp","mairu-orihara.webp","maju-kuzuhara.webp","manami-mamiya.webp","masaomi-kida.webp","max-sandshelt.webp","mika-harima.webp","mikado-ryuugamine.webp","mikage-sharaku.webp","mikiya-awakusu.webp","mizuki-akabayashi.webp","nakura.webp","namie-yagiri.webp","ran-izumii.webp","rio-kamichika.webp","ruri-hijiribe.webp","ryo-takiguchi.webp","saburo-togusa.webp","saki-mikajima.webp","sayaka-sonohara.webp","seiji-yagiri.webp","seitarou-yagiri.webp","shingen-kishitani.webp","shinichi-tsukumoya.webp","shinra-kishitani.webp","shiri.webp","shizuo-heiwajima.webp","shizuo-nobusuma.webp","shojiro-kitagoma.webp","shu-aozaki.webp","shuuji-niekawa.webp","simon-brezhnev.webp","slon.webp","takaaki-kazamoto.webp","takashi-nasujima.webp","tom-tanaka.webp","vorona.webp","walker-yumasaki.webp","yahiro-mizuchi.webp","yuigadokusonmaru.webp"].map(async n => { __imgs[n] = await __asset('img/' + n, /.png$/.test(n) ? 'image/png' : /.webp$/.test(n) ? 'image/webp' : 'image/jpeg'); }));
   const LEGACY_GAMES = {"top":["durararadle"],"best":"^$"};
   let games = await doc('games');
   if (games == null) {  // première ouverture : tu retrouves tes records et tes parties d'avant
@@ -54,7 +57,7 @@ const DLE_GENDER = {F: 'Femme', M: 'Homme', V: 'Variable', N: 'Aucun', '?': 'Inc
 const dleDay = (d = new Date()) => d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
 const dleHash = s => { let h = 2166136261; for (const c of s) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return h >>> 0; };
 const dleNorm = s => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[^a-z0-9぀-鿿]+/g, ' ').trim();
-const dleImg = (g, c) => c.img ? 'dle/img/' + g.dir + '/' + c.img : '';
+const dleImg = (g, c) => c.img ? (__imgs[c.img] || '') : '';
 
 /* ---------- comparing a guess with the answer, column by column ---------- */
 function dleCompare(g, guess, ans) {
