@@ -1,9 +1,9 @@
 {
   "pluginId": "neodex.durararadle",
   "repo": "NDesumeur/neodex-plugin-durararadle",
-  "version": "1.2.0",
-  "sha256": "de2e563710482d15f0df852cc0c38adc0f525cb0d4e111e5272f339370f1cdf2",
-  "approvedAt": "2026-10-31T23:25:06.395Z",
+  "version": "1.3.0",
+  "sha256": "2ce41e978ee8f0eef0bc6514097f963e6dcd7ebf0b049408bb98977a6a4f4740",
+  "approvedAt": "2026-11-04T10:05:10.895Z",
   "neobase": ">=4.0.0",
-  "signature": "UtK+5v+IF/HvdvlaHrMo9/dd1hhxRvh2SzCvdo5EtYQ8UhDJQsZV1tEq97Vai7/XI/AhnQ1OciEtrMBMBlriBg=="
+  "signature": "rJ5DcmuGFmnyd6ntGIKZEbJuIUP4ynKbnI0z7bb+k86SKb375wqnmcU9oOSTqeu79YUrvqQSJsJOaQh1rJCYDg=="
 }
